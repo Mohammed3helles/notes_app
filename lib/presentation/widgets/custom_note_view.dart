@@ -12,13 +12,18 @@ class CustomNoteView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppSpace.p24),
-      child: Column(
+      child: Column(mainAxisSize: MainAxisSize.max,
         children: [
           SizedBox(height: AppSize.s50),
           customAppBar(context),
-          Expanded(child: ListView.builder(itemBuilder: (context, index) {
-            return const NoteItem();
-          })),
+          Expanded(child: Padding(
+            padding:  EdgeInsets.symmetric(vertical: AppSpace.p16),
+            child: ListView.builder(
+                padding: EdgeInsets.zero,
+                itemBuilder: (context, index) {
+              return const NoteItem();
+            }),
+          )),
         ],
       ),
     );
