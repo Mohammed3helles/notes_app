@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../resources/color_manager.dart';
@@ -6,11 +8,10 @@ import '../resources/values_manager.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: AppSpace.p12),
+      margin: EdgeInsets.only(top: AppSize.s10),
       padding: EdgeInsets.only(
         top: AppSpace.p20,
         bottom: AppSpace.p20,
@@ -19,7 +20,8 @@ class NoteItem extends StatelessWidget {
       ),
       width: double.infinity,
       decoration: BoxDecoration(
-          color: ColorManager.yellow,
+          color: Color.fromRGBO(Random().nextInt(254), Random().nextInt(254),
+              Random().nextInt(254), 1),
           borderRadius: BorderRadius.circular(AppSize.s22)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -32,7 +34,7 @@ class NoteItem extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
             ),
             subtitle: Padding(
-              padding: EdgeInsets.only(top: AppSpace.p16,bottom: AppSpace.p14),
+              padding: EdgeInsets.only(top: AppSpace.p16, bottom: AppSpace.p14),
               child: Text(
                 AppStrings.desApp,
                 style: Theme.of(context).textTheme.bodyMedium,

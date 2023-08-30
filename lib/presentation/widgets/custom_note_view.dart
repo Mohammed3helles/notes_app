@@ -16,7 +16,9 @@ class CustomNoteView extends StatelessWidget {
         children: [
           SizedBox(height: AppSize.s50),
           customAppBar(context),
-          const NoteItem(),
+          Expanded(child: ListView.builder(itemBuilder: (context, index) {
+            return const NoteItem();
+          })),
         ],
       ),
     );
@@ -45,5 +47,3 @@ class CustomNoteView extends StatelessWidget {
     );
   }
 }
-
-

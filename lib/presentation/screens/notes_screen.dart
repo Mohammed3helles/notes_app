@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/presentation/resources/strings_manager.dart';
 
 import '../widgets/custom_note_view.dart';
 
@@ -10,6 +9,10 @@ class NotesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body:  const CustomNoteView(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
