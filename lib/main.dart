@@ -1,25 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/presentation/resources/routes_manager.dart';
+import 'package:notes_app/presentation/resources/theme_manager.dart';
 
 void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-//get0595408132hup
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const NoteApp(),
-    );
-  }
+  runApp(const NoteApp());
 }
 
 class NoteApp extends StatelessWidget {
@@ -27,10 +11,9 @@ class NoteApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      appBar: AppBar(
-        title: const Text('data is required'),
-      ),
+    return MaterialApp(
+      theme: AppTheme.getTheme(),
+      onGenerateRoute: AppRoute.getGenerateRoutes,
     );
   }
 }
