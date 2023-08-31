@@ -23,6 +23,7 @@ class EditNoteScreen extends StatelessWidget {
             SizedBox(height: AppSize.s16),
             const CustomTextField(
                 hint: AppStrings.contentTextFiled, maxLines: 5),
+            //
           ],
         ),
       ),
