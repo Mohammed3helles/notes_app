@@ -1,3 +1,5 @@
+const String kNoteBox = 'note box';
+
 class AppSize {
   static double s8 = 8.0;
   static double s10 = 10.0;
@@ -27,5 +29,3 @@ class AppSpace {
   static double p22 = 22.0;
   static double p24 = 24.0;
 }
-
-

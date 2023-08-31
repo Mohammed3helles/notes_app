@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/presentation/resources/routes_manager.dart';
 import 'package:notes_app/presentation/resources/theme_manager.dart';
+import 'package:notes_app/presentation/resources/values_manager.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox(kNoteBox);
   runApp(const NoteApp());
 }
 
