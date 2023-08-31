@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import '../resources/color_manager.dart';
 import '../resources/values_manager.dart';
 
-//ignore:must_be_immutable
 class CustomTextField extends StatelessWidget {
-  String hint;
-  int maxLines;
-
-  CustomTextField({super.key, required this.hint, this.maxLines = 1});
+  final String hint;
+  final int maxLines;
+  const CustomTextField({super.key, required this.hint, this.maxLines = 1});
 
   @override
   Widget build(BuildContext context) {

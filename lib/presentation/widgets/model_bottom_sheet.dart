@@ -18,25 +18,34 @@ class AddNoteModelBottomSheet extends StatelessWidget {
         color: Theme.of(context).canvasColor,
         borderRadius: BorderRadius.circular(AppSize.s20),
       ),
-      child: Column(
-        children: [
-          SizedBox(height: AppSize.s20),
-          CustomTextField(hint: 'Title'),
-          SizedBox(height: AppSize.s16),
-          CustomTextField(hint: 'Content',maxLines: 5,),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorManager.textField),
-              child: const Text(AppStrings.nameButtonAdd),
-            ),
-          )
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: AppSize.s20),
+            CustomTextField(hint: AppStrings.titleTextFiled),
+            SizedBox(height: AppSize.s16),
+            CustomTextField(hint: AppStrings.contentTextFiled, maxLines: 5),
+            buildButtonAdd(context)
+          ],
+        ),
       ),
     );
   }
 
-
+  Container buildButtonAdd(BuildContext context) {
+    return Container(
+            margin: const EdgeInsets.only(top: 40, bottom: 20),
+            width: MediaQuery.of(context).size.width,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: ColorManager.textField),
+              child: Text(
+                AppStrings.nameButtonAdd,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+          );
+  }
 }
