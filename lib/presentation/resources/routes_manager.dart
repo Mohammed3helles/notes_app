@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/business_logic/add_note/add_note_cubit.dart';
 import 'package:notes_app/presentation/resources/strings_manager.dart';
 import 'package:notes_app/presentation/screens/edit_note_screen.dart';
 import 'package:notes_app/presentation/screens/notes_screen.dart';
@@ -10,7 +12,11 @@ class AppRoute {
   static Route<dynamic> getGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
       case noteScreen:
-        return MaterialPageRoute(builder: (_) => const NotesView());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => AddNoteCubit(),
+                  child: const NotesView(),
+                ));
       case editScreen:
         return MaterialPageRoute(builder: (_) => const EditNoteScreen());
       default:

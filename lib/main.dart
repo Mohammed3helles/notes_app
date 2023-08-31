@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/presentation/resources/routes_manager.dart';
 import 'package:notes_app/presentation/resources/theme_manager.dart';
 import 'package:notes_app/presentation/resources/values_manager.dart';
 
+import 'data/model/note_model.dart';
+
 void main() async {
   await Hive.initFlutter();
   await Hive.openBox(kNoteBox);
+  Hive.registerAdapter(NoteAdapter());
   runApp(const NoteApp());
 }
 

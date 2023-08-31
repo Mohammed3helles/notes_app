@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:notes_app/business_logic/add_note/add_note_cubit.dart';
+import 'package:notes_app/business_logic/add_note/add_note_state.dart';
 import 'package:notes_app/presentation/resources/color_manager.dart';
 import 'package:notes_app/presentation/resources/values_manager.dart';
 import 'package:notes_app/presentation/widgets/CustomTextField.dart';
@@ -27,28 +31,43 @@ class _AddNoteModelBottomSheetState extends State<AddNoteModelBottomSheet> {
         borderRadius: BorderRadius.circular(AppSize.s20),
       ),
       child: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          autovalidateMode: autoValidateMode,
-          child: Column(
-            children: [
-              SizedBox(height: AppSize.s20),
-              CustomTextField(
-                  hint: AppStrings.titleTextFiled,
-                  onSaved: (value) {
-                    title = value;
-                  }),
-              SizedBox(height: AppSize.s16),
-              CustomTextField(
-                hint: AppStrings.contentTextFiled,
-                maxLines: 5,
-                onSaved: (value) {
-                  description = value;
-                },
+        child: BlocConsumer<AddNoteCubit,AddNoteState>(
+          listener: (context, state) {
+            if (state is AddNoteFailedState) {
+              print('failed =>${state.errorMessage}');
+            }
+            if (state is AddNoteSuccessState) {
+              Navigator.pop(context);
+            }
+          },
+          builder: (context, state) {
+            return ModalProgressHUD(
+              inAsyncCall: state is AddNoteLoadingState ? true : false,
+              child: Form(
+                key: _formKey,
+                autovalidateMode: autoValidateMode,
+                child: Column(
+                  children: [
+                    SizedBox(height: AppSize.s20),
+                    CustomTextField(
+                        hint: AppStrings.titleTextFiled,
+                        onSaved: (value) {
+                          title = value;
+                        }),
+                    SizedBox(height: AppSize.s16),
+                    CustomTextField(
+                      hint: AppStrings.contentTextFiled,
+                      maxLines: 5,
+                      onSaved: (value) {
+                        description = value;
+                      },
+                    ),
+                    buildButtonAdd(context)
+                  ],
+                ),
               ),
-              buildButtonAdd(context)
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
@@ -72,11 +91,10 @@ class _AddNoteModelBottomSheetState extends State<AddNoteModelBottomSheet> {
   }
 
   void onAddNote() {
-    if(_formKey.currentState!.validate()){
+    if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-    }else{
-      autoValidateMode=AutovalidateMode.always;
-
+    } else {
+      autoValidateMode = AutovalidateMode.always;
     }
   }
 }
