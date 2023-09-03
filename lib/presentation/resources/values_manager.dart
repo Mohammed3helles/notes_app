@@ -1,5 +1,6 @@
 const String kNoteBox = 'note box';
 
+
 class AppSize {
   static double s8 = 8.0;
   static double s10 = 10.0;

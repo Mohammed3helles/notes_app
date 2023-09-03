@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/presentation/resources/color_manager.dart';
-import 'package:notes_app/presentation/resources/strings_manager.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/presentation/resources/values_manager.dart';
 import 'package:notes_app/presentation/widgets/custom_appBar.dart';
+import 'package:notes_app/presentation/widgets/custom_list_view.dart';
 
-import 'note_item.dart';
+import '../../business_logic/get_note/get_note_cubit.dart';
 
-class CustomNoteView extends StatelessWidget {
+class CustomNoteView extends StatefulWidget {
   const CustomNoteView({Key? key}) : super(key: key);
 
+  @override
+  State<CustomNoteView> createState() => _CustomNoteViewState();
+}
+
+class _CustomNoteViewState extends State<CustomNoteView> {
+ @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    BlocProvider.of<GetNoteCubit>(context).getNotes();
+ }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,16 +28,12 @@ class CustomNoteView extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           SizedBox(height: AppSize.s50),
-          CustomAppBar(iconData: Icons.search,),
-          Expanded(
-              child: Padding(
-            padding: EdgeInsets.symmetric(vertical: AppSpace.p16),
-            child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemBuilder: (context, index) {
-                  return const NoteItem();
-                }),
-          )),
+          const CustomAppBar(
+            iconData: Icons.search,
+          ),
+          const Expanded(
+            child: CustomListView(),
+          ),
         ],
       ),
     );
