@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:notes_app/business_logic/add_note/add_note_cubit.dart';
 import 'package:notes_app/presentation/resources/routes_manager.dart';
 import 'package:notes_app/presentation/resources/theme_manager.dart';
 import 'package:notes_app/presentation/resources/values_manager.dart';
+import 'package:notes_app/simple_bloc_observer.dart';
 
 import 'data/model/note_model.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox(kNoteBox);
+  Bloc.observer = SimpleBlocObserver();
   Hive.registerAdapter(NoteAdapter());
-  runApp(const NoteApp());
+  await Hive.openBox<Note>(kNoteBox);
+  runApp(
+    const NoteApp(),
+  );
 }
 
 class NoteApp extends StatelessWidget {

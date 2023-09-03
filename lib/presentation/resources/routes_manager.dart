@@ -12,11 +12,7 @@ class AppRoute {
   static Route<dynamic> getGenerateRoutes(RouteSettings settings) {
     switch (settings.name) {
       case noteScreen:
-        return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => AddNoteCubit(),
-                  child: const NotesView(),
-                ));
+        return MaterialPageRoute(builder: (_) => const NotesView());
       case editScreen:
         return MaterialPageRoute(builder: (_) => const EditNoteScreen());
       default:
