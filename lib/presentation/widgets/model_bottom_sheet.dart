@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/business_logic/add_note/add_note_cubit.dart';
 import 'package:notes_app/business_logic/add_note/add_note_state.dart';
+import 'package:notes_app/business_logic/get_note/get_note_cubit.dart';
 import 'package:notes_app/data/model/note_model.dart';
 import 'package:notes_app/presentation/resources/color_manager.dart';
 import 'package:notes_app/presentation/resources/values_manager.dart';
@@ -44,6 +45,7 @@ class _AddNoteModelBottomSheetState extends State<AddNoteModelBottomSheet> {
                 print('failed =>${state.errorMessage}');
               }
               if (state is AddNoteSuccessState) {
+                BlocProvider.of<GetNoteCubit>(context).getNotes();
                 Navigator.pop(context);
               }
             },

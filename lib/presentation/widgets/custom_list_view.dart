@@ -15,19 +15,19 @@ class CustomListView extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: AppSpace.p16),
       child: BlocBuilder<GetNoteCubit, GetNoteState>(builder: (context, state) {
-        List<Note> notes=BlocProvider.of<GetNoteCubit>(context).notes??[];
+        List<Note> notes = BlocProvider.of<GetNoteCubit>(context).notes ?? [];
         if (notes.isNotEmpty) {
-          print('the length of notes is = ${notes.length}');
+          debugPrint('the length of notes is = ${notes.length}');
           return ListView.builder(
-            reverse: false,
+              reverse: false,
               padding: EdgeInsets.zero,
               itemCount: notes.length,
               itemBuilder: (context, index) {
                 return NoteItem(
-                 note: notes[index],
+                  note: notes[index],
                 );
               });
-        }else{
+        } else {
           return Center(
             child: Text(
               AppStrings.noteIsNoteAvailable,
@@ -35,7 +35,6 @@ class CustomListView extends StatelessWidget {
             ),
           );
         }
-
       }),
     );
   }

@@ -7,9 +7,10 @@ import '../resources/values_manager.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
   final IconData iconData;
+  final Function()? onTap;
 
-  const CustomAppBar(
-      {super.key, required this.iconData, this.title = AppStrings.nameApp});
+   const CustomAppBar(
+      {super.key, required this.iconData, this.title = AppStrings.nameApp, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +22,7 @@ class CustomAppBar extends StatelessWidget {
         ),
         const Spacer(),
         InkWell(
-          onTap: () {
-            if (iconData == Icons.search) {
-            } else {
-              Navigator.pop(context);
-            }
-          },
+          onTap: onTap,
           child: Container(
             width: 45,
             height: 45,

@@ -4,6 +4,7 @@ part of 'get_note_cubit.dart';
 abstract class GetNoteState {}
 
 class GetNoteInitial extends GetNoteState {}
+class GetNoteSuccess extends GetNoteState {}
 
 
 

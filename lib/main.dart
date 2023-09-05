@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:notes_app/business_logic/add_note/add_note_cubit.dart';
+import 'package:notes_app/business_logic/get_note/get_note_cubit.dart';
 import 'package:notes_app/presentation/resources/routes_manager.dart';
 import 'package:notes_app/presentation/resources/theme_manager.dart';
 import 'package:notes_app/presentation/resources/values_manager.dart';
@@ -24,10 +24,13 @@ class NoteApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.getTheme(),
-      onGenerateRoute: AppRoute.getGenerateRoutes,
+    return BlocProvider(
+      create: (_) => GetNoteCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.getTheme(),
+        onGenerateRoute: AppRoute.getGenerateRoutes,
+      ),
     );
   }
 }
